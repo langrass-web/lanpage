@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=calc(device-width+100000px), initial-scale=1.0">
+    <title>蓝页</title>
+    <script type="text/javascript">
+		let count = 0;
+		let isDarkMode = false;
+    	function swi(){
+			isDarkMode = !isDarkMode;  
+			const body = document.getElementById('body');  
+			const elements = document.querySelectorAll('#title, #s, #set, #home, #set p, #set button,#page button, #body');  
+			elements.forEach(element => {  
+			    element.style.backgroundColor = isDarkMode ? '#101010' : 'transparent';  
+			    element.style.color = isDarkMode ? 'white' : 'black';
+			}); 
+		}
+		document.addEventListener("DOMContentLoaded", function() {
+			const date = new Date();
+			const hours = date.getHours();
+    		if(hours > 18 || hours < 5){
+    			swi()
+    		}
+		});
+	    function opencount(){
+			document.getElementById("count").style.display = "inline-block"
+		}
+		function runjs(){
+			let code = prompt("JS code:");
+			let result = eval(code);
+			alert(result);
+		}
+		function opencalc(){
+			a = prompt("请输入算式");
+			
+		}
+    </script>
+	<style>
+		#title {
+			width: 10if(){
+
+}und-color: white; 
+			border: none;
+			box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+		}                                                                                                                                
+		body,html {
+			width:100%;
+			margin: 0
+		}
+		#home {
+			width: 96px;
+			height: 50px;
+			border-color: white;
+			border-style: inherit;
+			background-color: white; 
+			font-size: 150%;
+			transition: background-color 0.3s ease;
+			transition: box-shadow 0.3s ease;
+		}
+		#set {
+			padding: 20px;
+			width: 250px;
+			margin: 20px;
+			box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+			display:none;
+			float: right;
+			position: absolute;
+			right: 0%;
+			top: 50px;
+			z-index: 100;
+		}
+		#s {
+			width: 96px;
+			height: 50px;
+			border-color: white;
+			border-style: inherit;
+			background-color: white; 
+			font-size: 150%;
+			transition: background-color 0.3s ease;
+			transition: box-shadow 0.3s ease;
+			float: right;
+		}
+		#set button {
+			border: none;
+			background-color: white;
+		}
+		#title, #s, #set, #home, #set p, #set button {  
+		    transition: background-color 0.3s ease, color 0.3s ease;  
+		} 
+		#title button:hover {
+			box-shadow: 0px 0px 10px rgba(143, 143, 143, 0.6);
+		}
+		#page button {
+			width: 200px;
+			height: 50px; 
+			border-color: white;
+			border-style: inherit;
+			background-color: white; 
+			font-size: 150%;
+			background-color: transparent;
+		}
+		#page button:hover{
+			box-shadow: 0px 0px 10px rgba(143, 143, 143, 0.6);
+		}
+	</style>
+</head>
+<body style="padding: 0px;" id='body'>
+	
+	<div id='title'>
+		<button id='home' onclick="window.location.assign('index.html')">蓝页</button>
+		<button id='home' onclick="window.location.assign('download.html')">下载</button>
+		<button id='s' onclick="document.getElementById('set').style = 'display:block;'">设置</button>
+	</div>
+	<div id="page" style="padding: 15px;">
+		<div style="width:200px;height:200px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;display:None;" id="count">
+			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('count').style.display = 'None'">x</button>
+			<br/>
+			<p style="text-align: end;" id="cview">0</p>
+			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;float:left" onclick="count = count + 1;document.getElementById('cview').innerHTML = count;">+</button>
+			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;float:right" onclick="count = count - 1;document.getElementById('cview').innerHTML = count;">-</button>
+		</div>
+		<div style="width:250px;height:190px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;display:None;" id="france">
+			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('france').style.display = 'None'">x</button>
+			<iframe src="france.html" width="240px" height="160px" style="border: none;"></iframe>
+		</div>
+		<div style="width: 98%;position: absolute;bottom: 10px;" id="apps">
+			<button style="border-radius:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;" onclick="opencount()">计数器</button>
+			<button style="border-radius:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;" onclick="opencalc()">计算器</button>
+			<button style="border-radius:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;" onclick="document.getElementById('france').style.display = 'inline-block'">法法</button>
+			<div style="float: right;">
+				<button style="width: auto;height: auto;font-size: 100%;padding: -5px;border-radius:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);" onclick="runjs()">   JS执行器   </button>
+			</div>
+		</div>
+	</div>
+	<div id='set'>
+		<p>外观</p>
+		<button onclick='swi()' id='swi'>深色模式 切换</button>
+		<br/><p>关于</p>
+		<button onclick="window.location.assign('about.html')">关于</button>
+		<button onclick="window.location.assign('backdoor.html')">后门登录</button>
+		<br/>————————————<br/>
+		<button onclick="document.getElementById('set').style = 'display:none;'">关闭</button>
+	</div>
+</body>
+</html>		

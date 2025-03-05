@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>蓝页 - 下载站</title>
+    <script type="text/javascript">  
+		
+  		let isDarkMode = false;
+    	function swi(){
+			isDarkMode = !isDarkMode;  
+			const body = document.getElementById('body');  
+			const elements = document.querySelectorAll('#title, #s, #set, #home, #set p, #set button,#page button, #body');  
+			elements.forEach(element => {  
+			    element.style.backgroundColor = isDarkMode ? '#101010' : 'transparent';  
+			    element.style.color = isDarkMode ? 'white' : 'black';
+			}); 
+		}
+		document.addEventListener("DOMContentLoaded", function() {
+			const date = new Date();
+			const hours = date.getHours();
+    		if(hours > 18 || hours < 5){
+    			swi()
+    		}
+		});
+    </script>
+	<style>
+		#title {
+			width: 100%;   
+			margin: 0
+			background-color: white; 
+			border: none;
+			box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+		}
+		html, body {  
+            height: 100%;  
+            margin: 0;  
+            overflow: hidden;
+        }
+		#home {
+			width: 96px;
+			height: 50px;
+			border-color: white;
+			border-style: inherit;
+			background-color: transparent; 
+			font-size: 150%;
+			transition: background-color 0.3s ease;
+			transition: box-shadow 0.3s ease;
+		}
+		#set {
+			padding: 20px;
+			width: 250px;
+			margin: 20px;
+			box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+			display:none;
+			position: absolute;
+			right: 0%;
+			top: 50px;
+			z-index: 200 !important;
+		}
+		#s {
+			width: 96px;
+			height: 50px;
+			border-color: white;
+			border-style: inherit;
+			background-color: transparent; 
+			font-size: 150%;
+			transition: background-color 0.3s ease;
+			transition: box-shadow 0.3s ease;
+			float: right;
+		}
+		#set button {
+			border: none;
+			background-color: transparent;
+		}
+		#title, #s, #set, #home, #set p, #set #page button {  
+		    transition: background-color 0.3s ease, color 0.3s ease;  
+		} 
+		#title button:hover {
+			box-shadow: 0px 0px 10px rgba(143, 143, 143, 0.6);
+		}
+		#page {  
+            height: calc(100% - 60px); /* 留出标题空间 */   
+            padding: 20px;  
+      	  }  
+		.xq:hover {
+			box-shadow: 0px 0px 5px rgba(143, 143, 143, 0.6);
+		}
+		.db button {
+			width: 200px;
+			height: 50px; 
+			border-color: white;
+			border-style: inherit;
+			background-color: white; 
+			font-size: 150%;
+			float:center;
+			background-color: transparent;
+		}
+		.db {
+			display: inline-block;
+        	margin-right: 10px;
+			margin-bottom: 10px; 
+		}
+		.downloadclass{
+			width: 210px;width: 200px;
+			height: 50px; 
+			border-color: white;
+			border-style: inherit;
+			background-color: white; 
+			font-size: 120%;
+			float:center;
+			background-color: transparent;
+			padding-right: 10px;
+			padding-left: 10px;
+		}
+		.downloadbutton{
+			max-height: calc(100vh - 120px);
+			width: 210px;
+			padding-left: 10px;
+			overflow-x: hidden;
+  			overflow-y: auto;
+		}
+	</style>
+</head>
+<body style="padding: 0px;" id='body'>
+	<div id='title'>
+		<button id='home' onclick="window.location.assign('index.html')">蓝页</button>
+		<button id='home' onclick="window.location.assign('download.html')">下载</button>
+		<button id='s' onclick="document.getElementById('set').style = 'display:block;'">设置</button>
+	</div>
+	<div id='page' style="display: flex;">
+		<div class="downloadclass">
+			<h2 style="text-align:center;font-size:150%">Python</h2>
+			<div class="downloadbutton">
+				<div class="db">
+					<button><a href='python-3.12.6-amd64.exe'>Python 64位</a></button><br/>
+					<button class='xq' onclick='window.alert("在x86-64 Windows上运行Python 3.10")'>详情</button>
+				</div><br/>
+				<div class="db">
+					<button><a href='python-3.12.6-arm64.exe'>Python ARM架构</a></button><br/>
+					<button class='xq'onclick='window.alert("在ARM64 Windows上运行Python 3.10")'>详情</button>
+				</div><br/>
+				<div class="db">
+					<button><a href='./python3.zip'>Python on Linux</a></button><br/>
+					<button class='xq'onclick='window.alert("在Linux上运行Python 3.10（需去掉扩展名）")'>详情</button>
+				</div><br/>
+			</div>
+		</div>
+		<div class="downloadclass">
+			<h2 style="text-align:center;font-size:150%">Scratch小程序</h2>
+			<div class="downloadbutton">
+				<div class="db">
+					<button><a href='3d game.sb3'>3D小游戏</a></button><br/>
+					<button class='xq' onclick='window.alert("可以在一个地图里移动的具有三维投影的小游戏")'>详情</button>
+				</div><br/>
+				<div class="db">
+					<button><a href='小兰草.sb3'>小蓝草沙盒</a></button><br/>
+					<button class='xq'onclick='window.alert("可以随意拖动物品的沙盒，游戏开始有一个小蓝草可以用上下左右控制")'>详情</button>
+				</div><br/>
+			</div>
+		</div>
+	</div>
+	<div id='set'>
+		<p>外观</p>
+		<button onclick='swi()' id='swi'>深色模式 切换</button>
+		<br/><p>关于</p>
+		<button onclick="window.location.assign('about.html')">关于</button>
+		<button onclick="window.location.assign('backdoor.html')">后门登录</button>
+		<br/>————————————<br/>
+		<button onclick="document.getElementById('set').style = 'display:none;'">返回</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>蓝页 - 关于网站</title>
+    <script type="text/javascript">
+
+  		let isDarkMode = false;
+    	function swi(){
+			isDarkMode = !isDarkMode;
+			const body = document.getElementById('body');
+			const elements = document.querySelectorAll('#title, #s, #set, #home, #set p, #set button,#page button, #body');
+			elements.forEach(element => {
+			    element.style.backgroundColor = isDarkMode ? '#101010' : 'transparent';
+			    element.style.color = isDarkMode ? 'white' : 'black';
+			});
+		}
+		document.addEventListener("DOMContentLoaded", function() {
+			const date = new Date();
+			const hours = date.getHours();
+    		if(hours > 18 || hours < 5){
+    			swi()
+    		}
+		});
+
+
+
+    </script>
+	<style>
+		#title {
+			width: 100%;
+			margin: 0
+			background-color: white;
+			border: none;
+			box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+		}
+		html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+		#home {
+			width: 96px;
+			height: 50px;
+			border-color: white;
+			border-style: inherit;
+			background-color: transparent;
+			font-size: 150%;
+			transition: background-color 0.3s ease;
+			transition: box-shadow 0.3s ease;
+		}
+		#set {
+			padding: 20px;
+			width: 250px;
+			margin: 20px;
+			box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+			display:none;
+			position: absolute;
+			right: 0%;
+			top: 50px;
+			z-index: 200 !important;
+		}
+		#s {
+			width: 96px;
+			height: 50px;
+			border-color: white;
+			border-style: inherit;
+			background-color: transparent;
+			font-size: 150%;
+			transition: background-color 0.3s ease;
+			transition: box-shadow 0.3s ease;
+			float: right;
+		}
+		#set button {
+			border: none;
+			background-color: transparent;
+		}
+		#title, #s, #set, #home, #set p, #set #page button {
+		    transition: background-color 0.3s ease, color 0.3s ease;
+		}
+		#title button:hover {
+			box-shadow: 0px 0px 10px rgba(143, 143, 143, 0.6);
+		}
+		#page {
+            height: calc(100% - 60px); /* 留出标题空间 */
+            padding: 20px;
+      	  }
+		#page h1 {
+		    text-align:center;
+		}
+		#page h2 {
+		    text-align:center;
+		}
+		#page button {
+		    border: none;
+			background-color: white;
+			font-size:150%;
+		}
+	</style>
+</head>
+<body style="padding: 0px;" id='body'>
+	<div id='title'>
+		<button id='home' onclick="window.location.assign('index.html')">蓝页</button>
+		<button id='home' onclick="window.location.assign('download.html')">下载</button>
+		<button id='s' onclick="document.getElementById('set').style = 'display:block;'">设置</button>
+	</div>
+	<div id='page'>
+        <h1>蓝页 LanPage</h1><br/>
+        <h2>蓝草LanGrass的个人网站</h2><br/>
+		<h2>Alpha v11</h2><br/>
+        <h2>Copyright 2025</h2><br/>
+		<p style="text-align:center;">
+			更新日志<br/>
+			Alpha阶段<br/>
+			v1 创建网站,创建蓝页,添加菜单栏,添加设置,添加深浅模式<br/>
+			v2 添加后门,现在还没有用<br/>
+			v3 添加下载站,添加Python下载<br/>
+			v4 添加我的Scratch小项目下载<br/>
+			v5 添加计数器和计算器小应用<br/>
+			v6 改进了计数器,改废了计算器,加了一个法法<br/>
+			v7 加了JavaScript执行器<br/>
+			v8 将设置里的 深色模式 切换 改为了 外观 深色模式 切换<br/>
+			v9 添加关于页面<br/>
+			v10 添加在19点至5点的时间内默认切换为深色模式<br/>
+			v11 添加更新日志<br/>
+		</p>
+        <p style="text-align:center;"><button onclick="window.location.assign('https://space.bilibili.com/3546576605677590')">蓝草的B站</button></p>
+	</div>
+	<div id='set'>
+		<p>外观</p>
+		<button onclick='swi()' id='swi'>深色模式 切换</button>
+		<br/><p>关于</p>
+        <button onclick="window.location.assign('about.html')">关于</button>
+		<button onclick="window.location.assign('backdoor.html')">后门登录</button>
+		<br/>————————————<br/>
+		<button onclick="document.getElementById('set').style = 'display:none;'">返回</button>
+	</div>
+</body>
+</html>
