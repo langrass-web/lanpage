@@ -4,6 +4,8 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=calc(device-width+100000px), initial-scale=1.0">
     <title>蓝页</title>
+	<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+	<script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <script type="text/javascript">
 		let count = 0;
 		let isDarkMode = false;
@@ -25,6 +27,9 @@
 		});
 	    function opencount(){
 			document.getElementById("count").style.display = "inline-block"
+		}
+		function openpycon(){
+			document.getElementById("python").style.display = "inline-block"
 		}
 		function runjs(){
 			let code = prompt("JS code:");
@@ -119,9 +124,16 @@
 			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;float:left" onclick="count = count + 1;document.getElementById('cview').innerHTML = count;">+</button>
 			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;float:right" onclick="count = count - 1;document.getElementById('cview').innerHTML = count;">-</button>
 		</div>
+		<div style="width:500px;height:300px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;display:None;" id="python">
+			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('count').style.display = 'None'">x</button>
+			<br/>
+			<py-repl auto-generate="true"> 
+			</py-repl>
+		</div>
 		<div style="width: 98%;position: absolute;bottom: 10px;" id="apps">
 			<button style="border-radius:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;" onclick="opencount()">计数器</button>
 			<button style="border-radius:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;" onclick="opencalc()">计算器</button>
+			<button style="border-radius:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;" onclick="openpycon()">Python控制台</button>
 			<div style="float: right;">
 				<button style="width: auto;height: auto;font-size: 100%;padding: -5px;border-radius:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);" onclick="runjs()">   JS执行器   </button>
 			</div>
