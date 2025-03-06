@@ -21,12 +21,21 @@
 		document.addEventListener("DOMContentLoaded", function() {
 			const date = new Date();
 			const hours = date.getHours();
-    		if(hours > 18 || hours < 5){
-    			swi()
-    		}
+	    		if(hours > 18 || hours < 5){
+	    			swi()
+	    		}
 		});
-	    function opencount(){
+	    	function opencount(){
 			document.getElementById("count").style.display = "inline-block"
+		}
+	    	function opencalc(){
+			a = prompt("请输入算式");
+			function isBasicArithmetic(str) {
+    				return /^\s*([-+]?(\d+|$\s*[-+]?\d+\s*$)(\s*[-+*/%]\s*[-+]?(\d+|$\s*[-+]?\d+\s*$))+\s*)$/.test(str);
+			}
+			if (isBasicArithmetic(a)==True){
+				alert(eval(a));
+			}
 		}
 		function openpycon(){
 			document.getElementById("python").style.display = "inline-block"
@@ -36,10 +45,7 @@
 			let result = eval(code);
 			alert(result);
 		}
-		function opencalc(){
-			a = prompt("请输入算式");
-			
-		}
+		
     </script>
 	<style>
 		#title {
