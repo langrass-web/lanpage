@@ -167,50 +167,5 @@
 		<br/>————————————<br/>
 		<button onclick="document.getElementById('set').style = 'display:none;'" id='setbut'>关闭</button>
 	</div>
-	<script type="text/python">
-        from browser import document, html, window
-        import sys
-        import traceback
-
-        # 自定义输出重定向
-        class ConsoleOutput:
-            def __init__(self, output_element):
-                self.output = output_element
-                
-            def write(self, text):
-                self.output <= html.DIV(text, style={"color":"#d4d4d4"})
-                
-            def flush(self):
-                pass
-
-        # 初始化全局变量
-        output_div = document["output"]
-        sys.stdout = ConsoleOutput(output_div)
-        sys.stderr = ConsoleOutput(output_div)
-        namespace = {'__name__': '__main__'}
-
-        # 输入处理函数
-        def execute_code(ev):
-            code = ev.target.value.strip()
-            if not code:
-                return
-
-            # 添加输入记录
-            output_div <= html.DIV(f">>> {code}", style={"color":"#569cd6"})
-            
-            try:
-                # 执行代码并捕获异常
-                exec(code, namespace)
-            except Exception as e:
-                trace = traceback.format_exc()
-                error_msg = f"Traceback (most recent call last):\n{trace}"
-                sys.stderr.write(error_msg)
-                
-            # 清空输入框
-            ev.target.value = ''
-
-        # 绑定回车事件
-        document["input"].bind("keypress", lambda ev: execute_code(ev) if ev.key == "Enter" else None)
-    </script>
 </body>
 </html>		
