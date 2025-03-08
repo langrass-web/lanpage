@@ -25,16 +25,20 @@
 	    			swi()
 	    		}
 		});
-	    	function opencount(){
+	    function opencount(){
 			document.getElementById("count").style.display = "inline-block"
 		}
-	    	function opencalc(){
-			a = prompt("请输入算式");
+		function opencalc(){
+			document.getElementById("calc").style.display = "inline-block"
+		}
+	    function calc(a){
 			function isBasicArithmetic(str) {
     				return /^\s*([-+]?(\d+|$\s*[-+]?\d+\s*$)(\s*[-+*/%]\s*[-+]?(\d+|$\s*[-+]?\d+\s*$))+\s*)$/.test(str);
 			}
 			if (isBasicArithmetic(a)==true){
-				alert(eval(a));
+				return eval(a);
+			}else{
+				return "您输入的不是表达式";
 			}
 		}
 		function openpycon(){
@@ -130,6 +134,13 @@
 			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;float:left" onclick="count = count + 1;document.getElementById('cview').innerHTML = count;">+</button>
 			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;float:right" onclick="count = count - 1;document.getElementById('cview').innerHTML = count;">-</button>
 		</div>
+		<div style="width:200px;height:200px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;display:None;" id="calc">
+			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('calc').style.display = 'None'">x</button>
+			<br/>
+			<input type="input" id="calcabc">
+			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;float:left" onclick="document.getElementById('calcresult').innerHTML = calc(document.getElementById('calcabc').value)">=</button>
+			<p style="text-align: end;" id="calcresult">0</p>
+			
 		<div style="width:500px;height:300px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;display:None;" id="python">
 			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('python').style.display = 'None'">x</button>
 			<br/>
