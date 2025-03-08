@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Brython控制台演示</title>
+    <!-- 引入Brython核心库 -->
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.12.1/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.12.1/brython_stdlib.js"></script>
+    <style>
+        #console {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            font-family: monospace;
+        }
+        #output {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+        }
+        #input {
+            width: 80%;
+            background: #2d2d2d;
+            color: white;
+            border: 1px solid #3c3c3c;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body onload="brython()">
+    <div id="console">
+        <div id="output"></div>
+        <input type="text" id="input" placeholder="输入Python代码后按回车执行">
+    </div>
+
+    <script type="text/python">
+        from browser import document, html, window
+        import sys
+        import traceback
+
+        # 自定义输出重定向
+        class ConsoleOutput:
+            def __init__(self, output_element):
+                self.output = output_element
+                
+            def write(self, text):
+                self.output <= html.DIV(text, style={"color":"#d4d4d4"})
+                
+            def flush(self):
+                pass
+
+        # 初始化全局变量
+        output_div = document["output"]
+        sys.stdout = ConsoleOutput(output_div)
+        sys.stderr = ConsoleOutput(output_div)
+        namespace = {'__name__': '__main__'}
+
+        # 输入处理函数
+        def execute_code(ev):
+            code = ev.target.value.strip()
+            if not code:
+                return
+
+            # 添加输入记录
+            output_div <= html.DIV(f">>> {code}", style={"color":"#569cd6"})
+            
+            try:
+                # 执行代码并捕获异常
+                exec(code, namespace)
+            except Exception as e:
+                trace = traceback.format_exc()
+                error_msg = f"Traceback (most recent call last):\n{trace}"
+                sys.stderr.write(error_msg)
+                
+            # 清空输入框
+            ev.target.value = ''
+
+        # 绑定回车事件
+        document["input"].bind("keypress", lambda ev: execute_code(ev) if ev.key == "Enter" else None)
+    </script>
+</body>
+</html>
