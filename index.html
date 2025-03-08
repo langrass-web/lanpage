@@ -20,6 +20,7 @@
 			}); 
 		}
 		document.addEventListener("DOMContentLoaded", function() {
+			brython()
 			const date = new Date();
 			const hours = date.getHours();
 	    		if(hours > 18 || hours < 5){
@@ -147,7 +148,7 @@
         }
 	</style>
 </head>
-<body style="padding: 0px;" id='body' onload="brython()">
+<body style="padding: 0px;" id='body'>
 	<div id='title'>
 		<button id='home' onclick="window.location.assign('index.html')">蓝页</button>
 		<button id='home' onclick="window.location.assign('download.html')">下载</button>
