@@ -4,8 +4,9 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=calc(device-width+100000px), initial-scale=1.0">
     <title>蓝页</title>
-	<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-	<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/brython@3.12.1/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.12.1/brython_stdlib.js"></script>
+    <style>
     <script type="text/javascript">
 		let count = 0;
 		let isDarkMode = false;
@@ -124,9 +125,29 @@
     		margin: 0;
     		padding: 0;
 		}
+		#console {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            font-family: monospace;
+        }
+        #output {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+			width:500px;
+        }
+        #input {
+            width: 80%;
+            background: #2d2d2d;
+            color: white;
+            border: 1px solid #3c3c3c;
+            padding: 5px;
+        }
 	</style>
 </head>
-<body style="padding: 0px;" id='body'>
+<body style="padding: 0px;" id='body' onload="brython()">
 	<div id='title'>
 		<button id='home' onclick="window.location.assign('index.html')">蓝页</button>
 		<button id='home' onclick="window.location.assign('download.html')">下载</button>
@@ -148,10 +169,10 @@
 			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);width:180px;height:30px;float:center" onclick="document.getElementById('calcresult').innerHTML = calc(document.getElementById('calcabc').value)">=</button><br/>
 		</div>
 		<div style="width:500px;height:300px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;display:None;" id="python">
-			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('python').style.display = 'None'">x</button>
-			<br/>
-			<py-repl auto-generate="true"> 
-			</py-repl>
+			<div id="console">
+        	<div id="output"></div>
+        	<input type="text" id="input" placeholder="输入Python代码后按回车执行">
+    		</div>
 		</div>
 		<div style="width: 98%;position: absolute;bottom: 10px;" id="apps">
 			<button style="border-radius:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;" onclick="opencount()">计数器</button>
@@ -171,5 +192,50 @@
 		<br/>————————————<br/>
 		<button onclick="document.getElementById('set').style = 'display:none;'" id='setbut'>关闭</button>
 	</div>
+	<script type="text/python">
+        from browser import document, html, window
+        import sys
+        import traceback
+
+        # 自定义输出重定向
+        class ConsoleOutput:
+            def __init__(self, output_element):
+                self.output = output_element
+                
+            def write(self, text):
+                self.output <= html.DIV(text, style={"color":"#d4d4d4"})
+                
+            def flush(self):
+                pass
+
+        # 初始化全局变量
+        output_div = document["output"]
+        sys.stdout = ConsoleOutput(output_div)
+        sys.stderr = ConsoleOutput(output_div)
+        namespace = {'__name__': '__main__'}
+
+        # 输入处理函数
+        def execute_code(ev):
+            code = ev.target.value.strip()
+            if not code:
+                return
+
+            # 添加输入记录
+            output_div <= html.DIV(f">>> {code}", style={"color":"#569cd6"})
+            
+            try:
+                # 执行代码并捕获异常
+                exec(code, namespace)
+            except Exception as e:
+                trace = traceback.format_exc()
+                error_msg = f"Traceback (most recent call last):\n{trace}"
+                sys.stderr.write(error_msg)
+                
+            # 清空输入框
+            ev.target.value = ''
+
+        # 绑定回车事件
+        document["input"].bind("keypress", lambda ev: execute_code(ev) if ev.key == "Enter" else None)
+    </script>
 </body>
 </html>		
