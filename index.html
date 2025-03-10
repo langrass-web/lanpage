@@ -31,7 +31,7 @@
 		}
 	    function calc(a){
 			function isBasicArithmetic(str) {
-    				return /^\s*([-+]?(\d+|$\s*[-+]?\d+\s*$)(\s*[-+*/%]\s*[-+]?(\d+|$\s*[-+]?\d+\s*$))+\s*)$/.test(str);
+    			return /^\s*([-+]?(\d+\.?\d*|$\s*[-+]?(\d+\.?\d*)\s*$)(\s*[-+*/%]\s*[-+]?(\d+\.?\d*|$\s*[-+]?(\d+\.?\d*)\s*$))+\s*)$/.test(str);
 			}
 			if (isBasicArithmetic(a)==true){
 				return eval(a);
@@ -122,6 +122,11 @@
     		margin: 0;
     		padding: 0;
 		}
+		.closebutton:hover{
+			box-shadow: 0px 0px 30px rgba(143, 143, 143, 0.6);
+			background-color: red;
+			color: white;
+		}
 	</style>
 </head>
 <body style="padding: 0px;" id='body'>
@@ -132,21 +137,21 @@
 	</div>
 	<div id="page" style="padding: 15px;">
 		<div style="width:200px;height:200px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;display:None;" id="count">
-			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('count').style.display = 'None'">x</button>
+			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('count').style.display = 'None'" class="closebutton">x</button>
 			<br/>
 			<p style="text-align: end;" id="cview">0</p>
 			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;float:left" onclick="count = count + 1;document.getElementById('cview').innerHTML = count;">+</button>
 			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;float:right" onclick="count = count - 1;document.getElementById('cview').innerHTML = count;">-</button>
 		</div>
 		<div style="width:200px;height:150px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;display:None;" id="calc">
-			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('calc').style.display = 'None'">x</button>
+			<button style="width: 30px;height: 30px;float: right;" onclick="document.getElementById('calc').style.display = 'None'" class="closebutton">x</button>
 			<br/><br/>
 			<input type="input" id="calcabc"><br/>
 			<p style="text-align: end;height: 30px;width:200px;" id="calcresult">0</p>
 			<button style="box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);width:180px;height:30px;float:center" onclick="document.getElementById('calcresult').innerHTML = calc(document.getElementById('calcabc').value)">=</button><br/>
 		</div>
 		<div style="width:500px;height:300px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);padding:10px;display:None;background: #1e1e1e;" id="python">
-			<button style="width: 30px;height: 30px;float: right;background-color:white" onclick="document.getElementById('python').style.display = 'None'">x</button>
+			<button style="width: 30px;height: 30px;float: right;background-color:white" onclick="document.getElementById('python').style.display = 'None'" class="closebutton">x</button>
 			<iframe src="python.html" width="480px" height="280px" style="overflow:hidden;border:none;"></iframe>
 		</div>
 		<div style="width: 98%;position: absolute;bottom: 10px;" id="apps">
